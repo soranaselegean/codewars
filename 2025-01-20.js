@@ -73,3 +73,35 @@ function tribonacci(signature,n){
     
     return arr
 }
+
+
+//There is an array with some numbers. All numbers are equal except for one. Try to find it! It’s guaranteed that array contains at least 3 numbers.
+//P: array with at least 3 numbers
+//R: the number which is different from the others
+//E: finUniq([1, 1, 2]) => 2
+//P: use indexOf, lastIndexOf
+
+function findUniq(arr) {
+  return arr.find(e => arr.indexOf(e) === arr.lastIndexOf(e))
+}
+
+// Given two positive integers n and p, we want to find a positive integer k, if it exists, such that the sum of the digits of n raised to consecutive powers starting from p is equal to k * n. If it is the case we will return k, if not return -1.
+//P: only positive integers
+//R: return a number or -1
+//E: 695 --> 6² + 9³ + 5⁴= 1390 = 695 * 2; 46288 --> 4³ + 6⁴+ 2⁵ + 8⁶ + 8⁷ = 2360688 = 46288 * 51
+//P: calculate the sum raised to the power by converting to an array and using reduce, check whether that sum / n is an integer and if yes return that number
+
+function digPow(n, p){
+  let sum = n.toString().split('').reduce((sum, e, i) => sum + e**(p + i), 0)
+  return sum % n === 0 ? sum / n : -1
+}
+
+//You are going to be given an array of integers. Your job is to take that array and find an index N where the sum of the integers to the left of N is equal to the sum of the integers to the right of N. If there is no index that would make this happen, return -1.
+//P: array of positive and negative integers
+//R: index or -1
+//E: findEvenIndex([1, 2, 3, 4, 1, 1, 4]) => 3
+//P: use findIndex
+
+function findEvenIndex(arr){
+  return arr.findIndex((e, i) => arr.slice(0, i).reduce((sum, e) => sum + e, 0) === arr.slice(i + 1).reduce((sum, e) => sum + e, 0))
+}
