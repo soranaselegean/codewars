@@ -12,3 +12,23 @@ function twoSum(numbers, target) {
       }
     }
 }
+
+//
+
+function findNb(m) {
+  let sum = 0,
+      n = 1
+  while (sum < m){
+    sum += n**3
+    if(sum === m){
+      return n
+    }
+    n++
+  }
+  
+  if (sum > m){
+    return -1
+  }
+}
+
+
